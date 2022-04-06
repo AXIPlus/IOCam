@@ -1,0 +1,12 @@
+AXIPlus IOCam
+=============
+
+Prerequisites:
+.NET 4.7.2
+
+Purpose:
+Use installer to install.
+Installs IOCam on the computer and adds it to autorun.
+
+
+For more information please check README on GitHub's official project.
