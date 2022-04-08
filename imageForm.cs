@@ -55,21 +55,6 @@ namespace IOCam
             }
         }
 
-        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Application.Exit();
-        }
-
-        private void configToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            configForm.Show();
-        }
-
-        private void galleryToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            galleryForm.Show();
-        }
-
         private void imageForm_KeyDown(object sender, KeyEventArgs e)
         {
             if(e.KeyCode == Keys.C)

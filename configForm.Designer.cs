@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(configForm));
             this.videoDevicesCombo = new System.Windows.Forms.ComboBox();
             this.snapshotCapabilitiesCombo = new System.Windows.Forms.ComboBox();
@@ -45,7 +46,13 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.configScreenText = new System.Windows.Forms.TextBox();
+            this.trayMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.configToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.galleryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.notifyIcon = new System.Windows.Forms.NotifyIcon(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.trayMenu.SuspendLayout();
             this.SuspendLayout();
             // 
             // videoDevicesCombo
@@ -194,6 +201,45 @@
             this.configScreenText.Size = new System.Drawing.Size(72, 20);
             this.configScreenText.TabIndex = 16;
             // 
+            // trayMenu
+            // 
+            this.trayMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.configToolStripMenuItem,
+            this.galleryToolStripMenuItem,
+            this.exitToolStripMenuItem});
+            this.trayMenu.Name = "trayMenu";
+            this.trayMenu.Size = new System.Drawing.Size(111, 70);
+            // 
+            // configToolStripMenuItem
+            // 
+            this.configToolStripMenuItem.Name = "configToolStripMenuItem";
+            this.configToolStripMenuItem.Size = new System.Drawing.Size(110, 22);
+            this.configToolStripMenuItem.Text = "&Config";
+            this.configToolStripMenuItem.Click += new System.EventHandler(this.configToolStripMenuItem_Click);
+            // 
+            // galleryToolStripMenuItem
+            // 
+            this.galleryToolStripMenuItem.Name = "galleryToolStripMenuItem";
+            this.galleryToolStripMenuItem.Size = new System.Drawing.Size(110, 22);
+            this.galleryToolStripMenuItem.Text = "&Gallery";
+            this.galleryToolStripMenuItem.Click += new System.EventHandler(this.galleryToolStripMenuItem_Click);
+            // 
+            // exitToolStripMenuItem
+            // 
+            this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(110, 22);
+            this.exitToolStripMenuItem.Text = "E&xit";
+            this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
+            // 
+            // notifyIcon
+            // 
+            this.notifyIcon.BalloonTipText = "IOCam will automatically pop when camera is turned on.";
+            this.notifyIcon.BalloonTipTitle = "IOCam";
+            this.notifyIcon.ContextMenuStrip = this.trayMenu;
+            this.notifyIcon.Icon = ((System.Drawing.Icon)(resources.GetObject("notifyIcon.Icon")));
+            this.notifyIcon.Text = "IOCam";
+            this.notifyIcon.Visible = true;
+            // 
             // configForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -228,6 +274,7 @@
             this.Shown += new System.EventHandler(this.configForm_Shown);
             this.Move += new System.EventHandler(this.configForm_Move);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.trayMenu.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -250,5 +297,10 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox configScreenText;
+        private System.Windows.Forms.ContextMenuStrip trayMenu;
+        private System.Windows.Forms.ToolStripMenuItem configToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem galleryToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
+        private System.Windows.Forms.NotifyIcon notifyIcon;
     }
 }

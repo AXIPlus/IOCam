@@ -2,8 +2,8 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "IOCam"
-#define MyAppVersion "1.0"
-#define MyAppPublisher "AXIPlius"
+#define MyAppVersion "1.0.1"
+#define MyAppPublisher "AXIPlus"
 #define MyAppURL "https://www.axiplus.com/"
 #define MyAppExeName "IOCam.exe"
 
@@ -22,9 +22,9 @@ DefaultDirName={autopf}\{#MyAppName}
 DisableProgramGroupPage=yes
 LicenseFile=R:\IOCam\LICENSE
 InfoBeforeFile=R:\IOCam\INSTALL.txt
-PrivilegesRequired=lowest
-OutputDir=R:\IOCam\
-OutputBaseFilename=innosetup
+;PrivilegesRequired=lowest
+OutputDir=R:\IOCam\bin
+OutputBaseFilename={#MyAppName}-{#MyAppVersion}
 SetupIconFile=R:\IOCam\tooth.ico
 Compression=lzma
 SolidCompression=yes
@@ -46,14 +46,13 @@ Source: "R:\IOCam\bin\Release\AForge.Math.dll"; DestDir: "{app}"; Flags: ignorev
 Source: "R:\IOCam\bin\Release\AForge.Video.DirectShow.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "R:\IOCam\bin\Release\AForge.Video.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "R:\IOCam\bin\Release\IOCam.exe.config"; DestDir: "{app}"; Flags: ignoreversion
-Source: "R:\IOCam\bin\Release\IOCam.exe.manifest"; DestDir: "{app}"; Flags: ignoreversion
 Source: "R:\IOCam\bin\Release\Newtonsoft.Json.dll"; DestDir: "{app}"; Flags: ignoreversion
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 
 [Icons]
 Name: "{autoprograms}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"
 Name: "{autodesktop}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"; Tasks: desktopicon
-Name: "{userstartup}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"; Tasks: autostarticon
+Name: "{commonstartup}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"; Tasks: autostarticon
 
 [Run]
 Filename: "{app}\{#MyAppExeName}"; Description: "{cm:LaunchProgram,{#StringChange(MyAppName, '&', '&&')}}"; Flags: nowait postinstall skipifsilent

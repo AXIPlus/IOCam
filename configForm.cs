@@ -36,7 +36,12 @@ namespace IOCam
             imageForm = null;
 
             IOCamSettings settings = new IOCamSettings();
-            if (!System.IO.File.Exists("config.json"))
+            if (!System.IO.Directory.Exists(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\IOCam"))
+            {
+                System.IO.Directory.CreateDirectory(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\IOCam");
+            }
+
+            if (!System.IO.File.Exists(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\IOCam\\config.json"))
             {
                 //first run
                 firstTime = false;  //allow the config screen to be up and running the first time
@@ -49,10 +54,10 @@ namespace IOCam
                 settings.galleryScreen = 0;
 
                 string settingsJSON = JsonConvert.SerializeObject(settings);
-                System.IO.File.WriteAllText("config.json", settingsJSON);
+                System.IO.File.WriteAllText(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\IOCam\\config.json", settingsJSON);
             }
 
-            string jsonText = System.IO.File.ReadAllText("config.json");
+            string jsonText = System.IO.File.ReadAllText(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\IOCam\\config.json");
             settings = JsonConvert.DeserializeObject<IOCamSettings>(jsonText);
 
             configScreenText.Text = "0";
@@ -130,7 +135,7 @@ namespace IOCam
                 settings.galleryScreen = galleryScreenCombo.SelectedIndex;
 
                 string settingsJSON = JsonConvert.SerializeObject(settings);
-                System.IO.File.WriteAllText("config.json", settingsJSON);
+                System.IO.File.WriteAllText(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\IOCam\\config.json", settingsJSON);
 
                 imageForm = null;
             }
@@ -311,6 +316,21 @@ namespace IOCam
             {
                 galleryForm.moveToScreen(galleryScreenCombo.SelectedIndex);
             }
+        }
+
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void configToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Show();
+        }
+
+        private void galleryToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            galleryForm.Show();
         }
     }
 

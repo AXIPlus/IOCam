@@ -147,6 +147,9 @@ namespace IOCam
         {
             Bitmap old = (Bitmap)previewForm.pictureBox.Image;
             previewForm.pictureBox.Image = ((PictureBox)sender).Image;
+            previewForm.Size = previewForm.pictureBox.Image.Size;
+            previewForm.Location = new Point(Left - previewForm.pictureBox.Image.Width, 0);
+
             previewForm.Show();
 
             saveButton.Tag = ((PictureBox)sender).Tag.ToString();
