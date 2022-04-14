@@ -2,6 +2,10 @@
 Simple and easily configurable software for dental intra-oral cameras on Windows.
 
 ## Release notes
+### version 1.0.2
+- added overlay on exported images
+- updated version
+
 ### version 1.0.1
 - added application icon
 - updated version
