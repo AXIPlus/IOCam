@@ -57,7 +57,7 @@ namespace IOCam
         {
             lock (this)
             {
-                snapshotItem snapshot = new snapshotItem(DateTime.Now.ToLocalTime().ToString("yyyyMMddHHmmssfff"), bitmap);
+                snapshotItem snapshot = new snapshotItem(DateTime.Now.ToLocalTime(), bitmap);
                 snapshot.pictureBox.Location = new System.Drawing.Point(0, 88 + (snapshot.pictureBox.Height + 16) * snapshots.Count);
 
                 snapshot.pictureBox.MouseDown += pictureBox_MouseDown;
@@ -196,6 +196,7 @@ class PanelNoScrollOnFocus : Panel
 public class snapshotItem: IDisposable
 {
     public string name;
+    public string date;
     public PictureBox pictureBox;
 
     public string path;
@@ -213,10 +214,29 @@ public class snapshotItem: IDisposable
         return null;
     }
 
-    public snapshotItem(string name, Bitmap bitmap)
+    public snapshotItem(DateTime datetime, Bitmap bitmap)
     {
-        this.name = name;
+        this.name = datetime.ToString("yyyyMMddHHmmssfff");
+        this.date = datetime.ToString("yyyy-MM-dd HH:mm:ss");
         path = Path.GetTempPath() + name + ".jpg";
+
+        using (Graphics g = Graphics.FromImage(bitmap))
+        {
+            Image image = IOCam.Properties.Resources.ad_white;
+            g.DrawImage(image, new Rectangle(bitmap.Width - image.Width - 20, bitmap.Height - image.Height - 60, image.Width, image.Height));
+           
+            using (Font arialFont = new Font("Arial", 14))
+            {
+                SizeF s = g.MeasureString(date, arialFont);
+                PointF textLocation = new PointF(bitmap.Width - image.Width/2 - s.Width/2 - 20, bitmap.Height - s.Height - 30);
+                g.DrawString(date, arialFont, Brushes.White, textLocation);
+
+                string userName = Environment.MachineName + "/" + Environment.UserName;
+                s = g.MeasureString(userName, arialFont);
+                textLocation = new PointF(bitmap.Width - image.Width / 2 - s.Width / 2 - 20, bitmap.Height - s.Height - 10);
+                g.DrawString(userName, arialFont, Brushes.White, textLocation);
+            }
+        }
 
         pictureBox = new PictureBox
         {

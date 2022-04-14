@@ -96,11 +96,11 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(118, 153);
+            this.label1.Location = new System.Drawing.Point(105, 153);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(54, 13);
+            this.label1.Size = new System.Drawing.Size(72, 13);
             this.label1.TabIndex = 4;
-            this.label1.Text = "IOCam v1";
+            this.label1.Text = "IOCam v1.0.2";
             // 
             // linkLabel1
             // 
